@@ -19,7 +19,7 @@ Create and set the following variables in your workspaces (e.g., create terrafor
  * `aws_region`: Region to deploy the demo to. Defaults to `us-east-1`
  * `key_pair`: This is the EC2 key pair you created in order to SSH into your EC2 instance
  * `instance_type`: Size of the AWS instance to run the demo on. The default is set to `t3.medium`
- * `org_name`: The name of your Terraform Cloud Organization where these workspaces reside
+ * `org_name`: Specify organization where workspaces reside 
  * `workspace_name`: The name of the simple instance workspace
  * `bucket`: The name of an S3 bucket where Jenkins can stash an artifact from the build pipeline--just the bucket name only (NOTE: Make sure created in same region)
  * `prefix`: Unique prefix for naming (ex: dev)
