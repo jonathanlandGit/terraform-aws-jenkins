@@ -1,6 +1,6 @@
 # Terraform AWS Jenkins Pipeline setup
 
-The material in this repo demonstrates how to use the Terraform to provision a Jenkins instance
+Repo uses Terraform to provision a Jenkins instance and setup pipeline
 ## Prereqs
 
 Before you get started, you'll need to make sure you have a few things ready.
@@ -55,7 +55,7 @@ Login to Jenkins server. Navigate to the URL outputted in the workspace and logi
 Username: `devops`
 Password: `SuperSecret1`
 
-#### Entering your AWS credentials
+#### Entering AWS credentials in Jenkins
 
 Add AWS credentials into Jenkins in order to run pipeline and securely interact with AWS.
 
