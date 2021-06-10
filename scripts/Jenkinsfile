@@ -1,0 +1,63 @@
+#!groovy
+// NOTE: WIP 
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
+node {
+    checkout()
+    build()
+    putBinary()
+    buildInfrastructure()
+}
+
+def checkout() {
+    stage('Clone') {
+        git branch: 'master', url: 'https://github.com/<yourrepohere>.git'
+    }
+}
+
+def build() {
+    stage('Build') {
+        mvn 'package'
+    }
+}
+
+def putBinary() {
+    stage('Upload Binary') {
+        def fileName = ""
+        def fullPath = ""
+        Collection<org.jenkinsci.plugins.pipeline.maven.MavenArtifact> generatedArtifacts = currentBuild.rawBuild.getAction(org.jenkinsci.plugins.pipeline.maven.publishers.MavenReport.class).getGeneratedArtifacts();
+        for (org.jenkinsci.plugins.pipeline.maven.MavenArtifact generatedArtifact:generatedArtifacts) {
+            fileName = generatedArtifact.getFileName();
+            println(fileName)
+            println("--------")
+            break
+        }
+
+        // TODO: Fix region
+        fullPath = env.WORKSPACE + "/target/" + fileName
+        // withAWS(credentials:'pipeline-credentials', region: env.AWS_REGION) {
+        //     s3Upload(bucket: env.ASSET_BUCKET, file: fullPath, path: fileName)
+        // }
+        withAWS(region: env.AWS_REGION) {
+            s3Upload(bucket: env.ASSET_BUCKET, file: fullPath, path: fileName)
+        }
+    }
+}
+
+def buildInfrastructure() {
+    stage('Run Terraform') {
+        def runid = ""
+    
+        //TODO Add further setup 
+    }
+}
+
+//TODO Add further setup 
+
+
+def mvn(args) {
+    withMaven() {
+        sh "mvn $args"
+    }
+}
