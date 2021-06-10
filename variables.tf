@@ -5,7 +5,6 @@ variable "aws_access_key" {
 variable "aws_secret_key" {
   description = "AWS Secret Key"
 }
-
 variable "aws_region" {
   description = "AWS Region"
   default     = "us-east-1"
@@ -47,5 +46,9 @@ variable "ttl" {
 # May need for later
 # variable "aws_session_token" {
 #     description = "AWS Session Token"
+# }
+
+# variable "vpc_id" {
+#   description = "Specific vpc to set"
 # }
 

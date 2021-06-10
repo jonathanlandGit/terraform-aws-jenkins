@@ -1,5 +1,8 @@
 data "aws_vpc" "primary-vpc" {
+  //set this if default vpc, if not then use specific one below
   default = true
+  //try setting to specific vpc_id 
+  # id = var.vpc_id
 }
 
 data "aws_ami" "ubuntu" {
