@@ -1,4 +1,4 @@
-# Using Terraform In Your Jenkins Pipeline
+# Terraform AWS Jenkins Pipeline setup
 
 The material in this repo demonstrates how to use the Terraform to provision a Jenkins instance
 ## Prereqs
